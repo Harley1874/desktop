@@ -1,0 +1,86 @@
+$--icon-size: 50px;
+$--icon-gay: 30px;
+$--icon-radius: 10px;
+.web_icon {
+  cursor: pointer;
+  width: calc($--icon-size + $--icon-gay);
+  height: calc($--icon-size + $--icon-gay);
+  grid-column: span 1;
+  grid-row: span 1;
+  transition: all 0.3s;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+  padding: 0 $--icon-gay/2 $--icon-gay;
+  &.icon-size-1-1 {
+    grid-column: span 1;
+    grid-row: span 1;
+    width: calc($--icon-size + $--icon-gay);
+    height: calc($--icon-size + $--icon-gay);
+  }
+  &.icon-size-1-2 {
+    grid-column: span 2;
+    grid-row: span 1;
+    width: calc($--icon-size * 2 + $--icon-gay * 2);
+    height: calc($--icon-size + $--icon-gay);
+  }
+  &.icon-size-2-1 {
+    grid-column: span 1;
+    grid-row: span 2;
+    width: calc($--icon-size + $--icon-gay);
+    height: calc($--icon-size * 2 + $--icon-gay * 2);
+  }
+  &.icon-size-2-2 {
+    grid-column: span 2;
+    grid-row: span 2;
+    width: calc($--icon-size * 2 + $--icon-gay * 2);
+    height: calc($--icon-size * 2 + $--icon-gay * 2);
+  }
+  &.icon-size-2-4 {
+    grid-column: span 4;
+    grid-row: span 2;
+    width: calc($--icon-size * 4 + $--icon-gay * 4);
+    height: calc($--icon-size * 2 + $--icon-gay * 2);
+  }
+  &:hover {
+    .photo {
+      // 添加投影
+      box-shadow: 0 0 10px #0000004d;
+    }
+  }
+  .photo {
+    width: 100%;
+    height: 100%;
+    // width: 100%;
+    // height: 100%;
+    overflow: hidden;
+    border-radius: $--icon-radius;
+    margin: 0 auto;
+    margin-bottom: 4px;
+    overflow: hidden;
+    padding: 0;
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
+
+      display: block;
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+  }
+  .app-item-title {
+    font-size: 12px;
+    text-align: center;
+
+    width: calc(100% + $--icon-gay);
+    margin-left: calc($--icon-gay / 2 * -1);
+    display: block;
+    // margin-top: 6px;
+    // line-height: 1.1;
+    // filter: drop-shadow(0px 2px 7px rgba(0, 0, 0, 0.8));
+  }
+}
