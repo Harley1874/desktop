@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 22:08:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 19:40:13
+ * @LastEditTime: 2022-12-18 00:17:51
 -->
 <template>
   <div
@@ -74,7 +74,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, watch, computed } from "vue";
+import { ref, reactive, watch } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { Link, EditPen } from "@element-plus/icons-vue";
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";

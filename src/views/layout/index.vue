@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-03 17:21:35
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 19:55:18
+ * @LastEditTime: 2022-12-18 00:18:29
 -->
 <!--  -->
 <template>
@@ -15,14 +15,22 @@
     </div>
     <div class="content">
       <div class="modules-page">
-        <div class="modules-block">
-          <template v-for="item in list">
+        <draggable
+          item-key="id"
+          :list="list"
+          ghost-class="ghost"
+          chosen-class="chosenClass"
+          animation="300"
+          :group="{ name: 'article' }"
+          class="modules-block"
+        >
+          <template #item="{ element }">
             <component
-              :is="comParse(item.componentsName)"
-              :data="item"
+              :is="comParse(element.componentsName)"
+              :data="element"
             ></component>
           </template>
-        </div>
+        </draggable>
       </div>
     </div>
   </div>
@@ -30,31 +38,18 @@
 
 <script setup lang="ts">
 import { ref, markRaw, onMounted, nextTick } from "vue";
+import draggable from "vuedraggable";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
 // 小组件
 import weather from "@/components/modules/custom/Weather/index.vue"; // 天气组件
 import smallWeb from "@/components/modules/small_web/index.vue"; // 小网页组件
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
-
 import { useAppList } from "@/store/modules/appList.js";
-import { storeToRefs } from "pinia";
-
 const pinia = useAppList();
 const { appList }: any = pinia;
 // pinia.SETAPPLIST();
-let list = ref([
-  {
-    componentsName: "",
-  },
-]);
-list.value = appList;
-const subscribe = pinia.$subscribe(
-  (mutation, state) => {
-    list.value = state.appList;
-  },
-  { detached: false }
-);
+let list = ref(appList);
 const data = {};
 const closeRightMenu = () => {
   rightClickMenu.close();

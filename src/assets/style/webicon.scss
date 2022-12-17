@@ -7,10 +7,11 @@ $--icon-radius: 10px;
   height: calc($--icon-size + $--icon-gay);
   grid-column: span 1;
   grid-row: span 1;
-  transition: all 0.3s;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
+  transition: all 0.3s ease;
   padding: 0 calc($--icon-gay/2) $--icon-gay;
+  &.chosenClass {
+    transition: none;
+  }
   &.icon-size-1-1 {
     grid-column: span 1;
     grid-row: span 1;
