@@ -10,7 +10,7 @@ $--icon-radius: 10px;
   transition: all 0.3s;
   transition-duration: 0.3s;
   transition-timing-function: ease;
-  padding: 0 $--icon-gay/2 $--icon-gay;
+  padding: 0 calc($--icon-gay/2) $--icon-gay;
   &.icon-size-1-1 {
     grid-column: span 1;
     grid-row: span 1;
