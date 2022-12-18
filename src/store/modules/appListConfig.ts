@@ -13,7 +13,7 @@ export const list: any = [
     id: "systemApp",
     img: "",
     url: "",
-    layout: "2*4",
+    layout: "2X4",
   },
   {
     type: "systemApp",
@@ -22,7 +22,7 @@ export const list: any = [
     id: "folder",
     img: "",
     url: "",
-    layout: "2*2",
+    layout: "2X2",
   },
   {
     type: "addApp",
@@ -31,7 +31,7 @@ export const list: any = [
     id: "addApp",
     img: "https://files.codelife.cc/website/add.svg",
     url: "",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -40,7 +40,7 @@ export const list: any = [
     id: "001",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -49,7 +49,7 @@ export const list: any = [
     id: "002",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -58,7 +58,7 @@ export const list: any = [
     id: "003",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -67,7 +67,7 @@ export const list: any = [
     id: "004",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -76,7 +76,7 @@ export const list: any = [
     id: "005",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -85,7 +85,7 @@ export const list: any = [
     id: "006",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -94,7 +94,7 @@ export const list: any = [
     id: "007",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -103,7 +103,7 @@ export const list: any = [
     id: "008",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -112,7 +112,7 @@ export const list: any = [
     id: "009",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -121,7 +121,7 @@ export const list: any = [
     id: "010",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -130,7 +130,7 @@ export const list: any = [
     id: "011",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -139,7 +139,7 @@ export const list: any = [
     id: "012",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -148,7 +148,7 @@ export const list: any = [
     id: "013",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -157,7 +157,7 @@ export const list: any = [
     id: "014",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -166,7 +166,7 @@ export const list: any = [
     id: "015",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -175,7 +175,7 @@ export const list: any = [
     id: "016",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -184,7 +184,7 @@ export const list: any = [
     id: "017",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -193,7 +193,7 @@ export const list: any = [
     id: "018",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -202,7 +202,7 @@ export const list: any = [
     id: "019",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -211,7 +211,7 @@ export const list: any = [
     id: "020",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
   {
     type: "app",
@@ -220,6 +220,6 @@ export const list: any = [
     id: "021",
     img: "https://files.codelife.cc/website/jsdesign.svg",
     url: "https://js.design/square?sort=downloadNum&source=itab&plan=4",
-    layout: "1*1",
+    layout: "1X1",
   },
 ];

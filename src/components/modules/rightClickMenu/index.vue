@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 20:43:25
+ * @LastEditTime: 2022-12-18 21:15:13
 -->
 <template>
   <div>
@@ -203,24 +203,24 @@ const layoutActive = (item: any) => {
 
 const layoutList = [
   {
-    name: "1*1",
-    layout: "1*1",
+    name: "1X1",
+    layout: "1X1",
   },
   {
-    name: "1*2",
-    layout: "1*2",
+    name: "1X2",
+    layout: "1X2",
   },
   {
-    name: "2*2",
-    layout: "2*2",
+    name: "2X2",
+    layout: "2X2",
   },
   {
-    name: "2*1",
-    layout: "2*1",
+    name: "2X1",
+    layout: "2X1",
   },
   {
-    name: "2*4",
-    layout: "2*4",
+    name: "2X4",
+    layout: "2X4",
   },
 ];
 const editLayout = (item: any, editlayout: any) => {

@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-17 15:35:14
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 20:42:13
+ * @LastEditTime: 2022-12-18 21:06:20
  */
 import { defineStore } from "pinia";
 import { list } from "./appListConfig.js";
@@ -17,7 +17,7 @@ export const useAppList = defineStore("appList", {
           id: "addApp",
           img: "https://files.codelife.cc/website/add.svg",
           url: "",
-          layout: "1*1",
+          layout: "1X1",
         },
       ],
     };

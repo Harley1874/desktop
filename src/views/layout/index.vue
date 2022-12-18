@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-03 17:21:35
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 20:41:32
+ * @LastEditTime: 2022-12-18 21:13:57
 -->
 <!--  -->
 <template>
@@ -31,7 +31,7 @@
             <component
               :is="comParse(element.componentsName)"
               :data="element"
-              :class="element.componentsName === 'folder' ? 'folder' : 'drag'"
+              :class="toClassName(element)"
             ></component>
           </template>
         </draggable>
@@ -59,6 +59,8 @@ import weather from "@/components/modules/custom/Weather/index.vue"; // 天气�
 import smallWeb from "@/components/modules/small_web/index.vue"; // 小网页组件
 import editAddVue from "@/components/modules/small_web/editAdd.vue"; // 小网页-编辑新值组件
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
+// 计算class样式
+import { toClassName } from "./utils.js";
 import { useAppList } from "@/store/modules/appList.js";
 const pinia = useAppList();
 let list = ref(pinia.appList);
@@ -153,7 +155,7 @@ const submit = (val: any) => {
       componentsName: "smallWeb",
       // id为完全随机
       id: Math.random().toString(36).substr(2),
-      layout: val.layout || "1*1",
+      layout: val.layout || "1X1",
       name: val.name,
       type: "app",
       url: val.url,

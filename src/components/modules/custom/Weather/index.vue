@@ -3,15 +3,11 @@
  * @Author: 李峥
  * @Date: 2022-12-16 23:20:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 20:12:23
+ * @LastEditTime: 2022-12-18 21:20:01
 -->
 <template>
-  <div
-    class="web_icon weather"
-    @contextmenu.prevent.stop="rightClick"
-    :class="layoutClass"
-  >
-    <template v-if="props.data.layout == '1*1'">
+  <div class="web_icon weather" @contextmenu.prevent.stop="rightClick">
+    <template v-if="props.data.layout == '1X1'">
       <div
         class="weather-box photo"
         style="
@@ -28,7 +24,7 @@
         </div>
       </div>
     </template>
-    <template v-if="props.data.layout == '1*2'" key="1*2">
+    <template v-if="props.data.layout == '1X2'" key="1X2">
       <div
         class="weather-box photo"
         style="
@@ -59,7 +55,7 @@
         </div>
       </div>
     </template>
-    <template v-if="props.data.layout == '2*2'" key="2*2">
+    <template v-if="props.data.layout == '2X2'" key="2X2">
       <div
         class="weather-box photo"
         style="
@@ -89,7 +85,7 @@
         </div>
       </div>
     </template>
-    <template v-if="props.data.layout == '2*1'" key="2*1">
+    <template v-if="props.data.layout == '2X1'" key="2X1">
       <div
         class="weather-box photo"
         style="
@@ -132,7 +128,7 @@
         </div>
       </div>
     </template>
-    <template v-if="props.data.layout == '2*4'" key="2*4">
+    <template v-if="props.data.layout == '2X4'" key="2X4">
       <div class="weather-box photo">
         <div class="top">
           <div class="left">
@@ -205,26 +201,6 @@ if (today !== piniaToday) {
 const rightClick = (event: any) => {
   const destroy = rightClickMenu.open(data, event, []);
 };
-
-// 首次进入打开
-watch(props, (nweProps, oldProps) => {
-  computedClass();
-});
-const layoutClass = ref({});
-const computedClass = () => {
-  const arr = props.data.layout.split("*");
-  const className = {
-    "icon-size-1-1": arr[0] == 1 && arr[1] == 1,
-    "icon-size-1-2": arr[0] == 1 && arr[1] == 2,
-    "icon-size-2-1": arr[0] == 2 && arr[1] == 1,
-    "icon-size-2-2": arr[0] == 2 && arr[1] == 2,
-    "icon-size-2-4": arr[0] == 2 && arr[1] == 4,
-  };
-  layoutClass.value = className;
-};
-onMounted(() => {
-  computedClass();
-});
 </script>
 
 <style lang="scss" scoped>

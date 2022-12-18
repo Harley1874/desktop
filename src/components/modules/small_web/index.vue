@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 22:08:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 20:45:24
+ * @LastEditTime: 2022-12-18 21:20:40
 -->
 <template>
   <div
@@ -11,7 +11,6 @@
     @click="event"
     @contextmenu.prevent.stop="rightClick"
     :layout="props.data.layout"
-    :class="layoutClass"
   >
     <div class="photo" :style="{ backgroundColor: data.color }">
       <template v-if="data.img">
@@ -161,22 +160,6 @@ const rightClick = (event: any) => {
 const getHttpIcon = () => {
   console.log("获取图标");
 };
-watch(props, (nweProps, oldProps) => {
-  computedClass();
-});
-const layoutClass = ref({});
-const computedClass = () => {
-  const arr = props.data.layout.split("*");
-  const className = {
-    "icon-size-1-1": arr[0] == 1 && arr[1] == 1,
-    "icon-size-1-2": arr[0] == 1 && arr[1] == 2,
-    "icon-size-2-1": arr[0] == 2 && arr[1] == 1,
-    "icon-size-2-2": arr[0] == 2 && arr[1] == 2,
-    "icon-size-2-4": arr[0] == 2 && arr[1] == 4,
-  };
-  layoutClass.value = className;
-};
-computedClass();
 </script>
 
 <style lang="scss" scoped>
