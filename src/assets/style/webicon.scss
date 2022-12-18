@@ -42,7 +42,7 @@ $--icon-radius: 10px;
     width: calc($--icon-size * 4 + $--icon-gay * 4);
     height: calc($--icon-size * 2 + $--icon-gay * 2);
   }
-  &:hover {
+  &:hover:not(.folder) {
     .photo {
       // 添加投影
       box-shadow: 0 0 10px #0000004d;

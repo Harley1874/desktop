@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-16 23:20:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 20:35:09
+ * @LastEditTime: 2022-12-18 20:12:23
 -->
 <template>
   <div
@@ -203,7 +203,7 @@ if (today !== piniaToday) {
   weatherStore.GET_WEATHER();
 }
 const rightClick = (event: any) => {
-  const destroy = rightClickMenu.open(data, event);
+  const destroy = rightClickMenu.open(data, event, []);
 };
 
 // 首次进入打开

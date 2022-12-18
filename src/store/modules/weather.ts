@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-17 13:12:23
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 20:28:47
+ * @LastEditTime: 2022-12-18 00:27:45
  */
 import { defineStore } from "pinia";
 import dayjs from "dayjs";
@@ -46,6 +46,7 @@ export const useWeatherStore = defineStore("weather", {
         this.weatherList = daily.filter((item: any) => {
           return item.fxDate != dayjs().format("YYYY-MM-DD");
         });
+        this.nowWeather.fxDate = dayjs().format("YYYY-MM-DD");
       });
     },
   },

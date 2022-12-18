@@ -3,73 +3,103 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 21:31:08
+ * @LastEditTime: 2022-12-18 20:43:25
 -->
 <template>
-  <div
-    class="rightClickMenu"
-    :style="{
-      left: props.event.clientX + 'px',
-      top: props.event.clientY + 'px',
-    }"
-  >
-    <ul>
-      <template v-if="data.url">
-        <li @click="openWeb">
-          <Position :style="iconStyle" />
-          <span class="text"> 在新标签页打开 </span>
+  <div>
+    <div
+      class="rightClickMenu"
+      :style="{
+        left: props.event.clientX + 'px',
+        top: props.event.clientY + 'px',
+      }"
+    >
+      <ul>
+        <li v-for="item in menuConfig" @click="handel(item)">
+          <component :style="iconStyle" :is="comParse(item.icon)"></component>
+          <span class="text"
+            >{{ item.name }}
+            <span v-if="item.accelerator" class="tips">{{
+              item.accelerator
+            }}</span>
+          </span>
         </li>
-        <li class="menu-item" @click="copyUrl">
-          <Connection :style="iconStyle" />
-          <span class="text"> 复制链接 </span>
-        </li>
-        <li>
-          <EditPen :style="iconStyle" />
-          <span class="text"> 编辑 </span>
-        </li>
-      </template>
-      <template v-if="data.id">
-        <li notHover>
-          <EditPen :style="iconStyle" />
-          <span class="text"> 布局 </span>
-        </li>
-        <div class="layout_box">
-          <div
-            v-for="item in layoutList"
-            class="layout_item"
-            :class="{
-              active: layoutActive(data),
-            }"
-            :layout="item.layout"
-            @click="editLayout(data, item.layout)"
-          >
-            {{ item.name }}
-          </div>
-        </div>
-      </template>
+        <template v-if="false">
+          <template v-if="!data.url">
+            <li @click="createApp">
+              <Plus :style="iconStyle" />
+              <span class="text">
+                添加应用
+                <span class="tips">A</span>
+              </span>
+            </li>
+          </template>
+          <template v-if="data.url">
+            <li @click="openWeb">
+              <Position :style="iconStyle" />
+              <span class="text"> 在新标签页打开 </span>
+            </li>
+            <li class="menu-item" @click="copyUrl">
+              <Connection :style="iconStyle" />
+              <span class="text"> 复制链接 </span>
+            </li>
+            <li>
+              <EditPen :style="iconStyle" />
+              <span class="text"> 编辑 </span>
+            </li>
+          </template>
+          <template v-if="data.id">
+            <li notHover>
+              <EditPen :style="iconStyle" />
+              <span class="text"> 布局 </span>
+            </li>
+            <div class="layout_box">
+              <div
+                v-for="item in layoutList"
+                class="layout_item"
+                :class="{
+                  active: layoutActive(data),
+                }"
+                :layout="item.layout"
+                @click="editLayout(data, item.layout)"
+              >
+                {{ item.name }}
+              </div>
+            </div>
+          </template>
 
-      <li @click="refreshBtn">
-        <EditPen :style="iconStyle" />
-        <span class="text">
-          刷新
-          <span class="tips">R</span>
-        </span>
-      </li>
-      <li>
-        <Delete :style="iconStyle" />
-        <span class="text"> 删除 </span>
-      </li>
-    </ul>
+          <li @click="refreshBtn">
+            <EditPen :style="iconStyle" />
+            <span class="text">
+              刷新
+              <span class="tips">R</span>
+            </span>
+          </li>
+          <li>
+            <Delete :style="iconStyle" />
+            <span class="text"> 删除 </span>
+          </li>
+        </template>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { nextTick } from "vue";
+import { nextTick, ref, markRaw, onMounted } from "vue";
 import {
   rightClickMenu,
   refresh,
 } from "@/components/modules/rightClickMenu/index.js";
-import { Position, Connection, EditPen, Delete } from "@element-plus/icons-vue";
+import { toLowerCase } from "@/utils/index.js";
+import {
+  Position,
+  Connection,
+  EditPen,
+  Delete,
+  Plus,
+  RefreshRight,
+} from "@element-plus/icons-vue";
 import { useAppList } from "@/store/modules/appList";
 const props = defineProps({
   data: {
@@ -80,6 +110,10 @@ const props = defineProps({
     type: Object,
     default: () => {},
   },
+  menuConfig: {
+    type: Array,
+    default: () => [],
+  },
 });
 const iconStyle = {
   width: "12px",
@@ -87,6 +121,49 @@ const iconStyle = {
 };
 const pinia = useAppList();
 const { data, event } = props;
+const menuConfig: any = ref(props.menuConfig);
+
+// 组件渲染
+const comParse = (str: String) => {
+  // 动态组件渲染
+  switch (str) {
+    case "Plus":
+      return markRaw(Plus);
+    case "RefreshRight":
+      return markRaw(RefreshRight);
+    case "EditPen":
+      return markRaw(EditPen);
+    case "Delete":
+      return markRaw(Delete);
+    default:
+      return;
+  }
+};
+// 组件方法  1. 调用传入的方法 2. 关闭右键菜单
+const handel = (item: any) => {
+  item.click();
+  closeRightClickMenu();
+};
+// 注册快捷键模块 start
+const registerShortcut = () => {
+  document.onkeydown = (e) => {
+    menuConfig.value.forEach((item: any) => {
+      if (item.accelerator) {
+        if (toLowerCase(e.key) == toLowerCase(item.accelerator)) {
+          item.click();
+          closeRightClickMenu();
+        }
+      }
+    });
+  };
+};
+// 卸载快捷键
+const unRegisterShortcut = () => {
+  document.onkeydown = null;
+};
+registerShortcut();
+// 快捷键模块 end
+
 const openWeb = () => {
   window.open(data.url);
   closeRightClickMenu();
@@ -105,7 +182,9 @@ const copyUrl = () => {
   document.body.removeChild(input);
   closeRightClickMenu();
 };
+// 关闭弹窗
 const closeRightClickMenu = () => {
+  unRegisterShortcut();
   const destroy = rightClickMenu.close();
 };
 // 刷新页面
@@ -149,6 +228,13 @@ const editLayout = (item: any, editlayout: any) => {
   const dom = document.querySelector(".layout_item[layout='" + layout + "']");
   if (dom) dom.classList.remove("active");
   pinia.editLayout(item.id, editlayout);
+};
+// pinia.SETAPPLIST();
+// 添加应用
+const createApp = () => {
+  closeRightClickMenu();
+  // 访问子组件的openEdit方法
+  rightClickMenu.addApp();
 };
 </script>
 

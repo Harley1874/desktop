@@ -1,159 +1,139 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-17 22:29:01
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 23:43:55
--->
-<!--  -->
 <template>
-  <div class="itxst">
-    <draggable
-      item-key="id"
-      :list="props.data"
-      ghost-class="ghost"
-      chosen-class="chosenClass"
-      animation="300"
-      :group="{ name: 'article' }"
-      @start="onStart"
-      @end="onEnd"
-    >
-      <template #item="{ element }">
-        <div class="item" v-if="element.type == 'normal'">
-          {{ element.name }}
-        </div>
-      </template>
-    </draggable>
+  <div class="dragList">
+    <div class="dragList-list1">
+      <h3 style="text-align: center">标签选择</h3>
+      <Draggable
+        :list="list2"
+        item-key="id"
+        :animation="100"
+        group="article"
+        @end="end1"
+        class="dragArea1"
+      >
+        <template #item="{ element }">
+          <div class="list-complete-item1">
+            <div class="list-complete-item-handle2">{{ element.name }}</div>
+          </div>
+        </template>
+      </Draggable>
+    </div>
 
     <div class="dragList-list2">
       <h3 style="text-align: center">拖动至此处</h3>
-      <draggable
-        tag="ul"
-        item-key="id"
+      <Draggable
         :list="list1"
-        ghost-class="ghost"
-        chosen-class="chosenClass"
-        animation="300"
-        :group="{ name: 'article', pull: '' }"
+        item-key="id"
+        group="article"
         @start="start2"
         @end="end2"
         class="dragArea2"
       >
-        <template #item="{ element }">
-          <li class="item" v-if="element.type == 'normal'">
-            {{ element.name }}
-          </li>
+        <template #item="{ element, index }">
+          <div class="list-complete-item2">
+            <div class="list-complete-item-handle">{{ element.name }}</div>
+            <div>
+              <i
+                class="el-icon-delete"
+                @click="handleDel(index, element.id)"
+              ></i>
+            </div>
+          </div>
         </template>
-      </draggable>
+      </Draggable>
     </div>
   </div>
 </template>
-<script setup>
+
+<script>
 import { ref, reactive } from "vue";
-import draggable from "vuedraggable";
-/*
-draggable 对CSS样式没有什么要求万物皆可拖拽
-:list="state.list"         //需要绑定的数组
-ghost-class="ghost"        //被替换元素的样式
-chosen-class="chosenClass" //选中元素的样式
-animation="300"            //动画效果
-@start="onStart"           //拖拽开始的事件
-@end="onEnd"               //拖拽结束的事件
-*/
+import Draggable from "vuedraggable";
 
-const props = defineProps({
-  data: {
-    type: Array,
-    default: () => [],
+export default {
+  components: {
+    Draggable,
   },
-});
-console.log("🚀 ~ file: index.vue:53 ~ props", props);
-
-const state = reactive({
-  //需要拖拽的数据，拖拽后数据的顺序也会变化
-  list: [
-    { name: "张三", id: 0, type: "normal" },
-    { name: "李四", id: 1, type: "normal" },
-    { name: "王五", id: 2, type: "normal" },
-    {
-      name: "文件夹",
-      id: 3,
-      type: "folder",
-      tasks: [
-        {
-          name: "文件app1",
-          id: 4,
-          type: "normal",
-        },
-        {
-          name: "文件app2",
-          id: 5,
-          type: "normal",
-        },
-        {
-          name: "文件app3",
-          id: 6,
-          type: "normal",
-        },
-      ],
-    },
-  ],
-});
-
-const list1 = reactive([]);
-
-//拖拽开始的事件
-const onStart = () => {
-  console.log("开始拖拽");
-};
-
-//拖拽结束的事件
-const onEnd = () => {
-  console.log("结束拖拽");
-};
-const start2 = () => {
-  console.log("开始拖拽");
-};
-const end2 = () => {
-  console.log("结束拖拽");
+  setup() {
+    const disabled = ref(false);
+    const list1 = reactive([]);
+    const list2 = reactive([
+      { id: 1, name: "标签1" },
+      { id: 2, name: "标签2" },
+      { id: 3, name: "标签3" },
+      { id: 4, name: "标签4" },
+      { id: 5, name: "标签5" },
+    ]);
+    const end1 = (ev) => {
+      console.log("拖动结束1", ev);
+    };
+    const start2 = (event) => {
+      console.log("开始拖动", event);
+    };
+    const end2 = (ev) => {
+      console.log("拖动结束2", ev);
+    };
+    const handleDel = (index, id) => {
+      list1.splice(index, 1);
+      let q = list2.find((value, index, arr) => {
+        return value.id === id;
+      });
+    };
+    return {
+      disabled,
+      list1,
+      list2,
+      end1,
+      start2,
+      end2,
+      handleDel,
+    };
+  },
 };
 </script>
-<style scoped lang="scss">
-.itxst {
-  width: 800px;
-  display: flex;
-}
-.itxst > div:nth-of-type(2) {
-  width: 270px;
-  padding-left: 20px;
-}
-.item {
-  border: solid 1px #eee;
-  padding: 6px 10px;
-  text-align: left;
-}
 
-.item:hover {
-  cursor: move;
+<style lang="scss" scoped>
+.dragList {
+  padding: 20px;
 }
-.item + .item {
-  margin-top: 10px;
+.dragList-list1 {
+  width: 120px;
 }
-.ghost {
-  border: solid 1px rgb(19, 41, 239);
+.list-complete-item1 {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 12px;
+  display: inline-block;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 50px;
+  line-height: 50px;
+  border: 1px solid #bfcbd9;
+  transition: all 1s;
 }
-.chosenClass {
-  background-color: #f1f1f1;
+.dragArea1 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .dragList-list2 {
-  width: 300px;
-  height: 300px;
-  margin-left: 20px;
-  .dragArea2 {
-    width: 300px;
-    height: 300px;
-    border: 1px dashed #ccc;
-    display: block;
-  }
+  margin-top: 20px;
+  height: 200px;
+  border: 1px solid #8a8a8a;
+}
+.dragArea2 {
+  display: flex;
+  align-items: center;
+}
+.list-complete-item2 {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0 12px;
+  display: inline-block;
+  margin: 10px;
+  width: 100px;
+  line-height: 30px;
+  text-align: center;
+  border: 1px solid #bfcbd9;
+  transition: all 1s;
 }
 </style>

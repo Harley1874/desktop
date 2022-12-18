@@ -3,14 +3,23 @@
  * @Author: 李峥
  * @Date: 2022-12-17 15:35:14
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 17:11:49
+ * @LastEditTime: 2022-12-18 20:42:13
  */
 import { defineStore } from "pinia";
 import { list } from "./appListConfig.js";
 export const useAppList = defineStore("appList", {
   state: () => {
     return {
-      appList: [],
+      appList: [
+        {
+          type: "addApp",
+          name: "添加应用",
+          id: "addApp",
+          img: "https://files.codelife.cc/website/add.svg",
+          url: "",
+          layout: "1*1",
+        },
+      ],
     };
   },
   actions: {
@@ -20,6 +29,9 @@ export const useAppList = defineStore("appList", {
     editLayout(id: string, layoutStr: string) {
       const index = this.appList.findIndex((item: any) => item.id === id);
       this.appList[index].layout = layoutStr;
+    },
+    createApp(obj: any) {
+      this.appList.push(obj);
     },
   },
   persist: {
