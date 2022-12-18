@@ -1,9 +1,16 @@
 <!--
  * @Descripttion: 
  * @Author: 李峥
+ * @Date: 2022-12-14 21:05:22
+ * @LastEditors: 李峥
+ * @LastEditTime: 2022-12-18 22:52:09
+-->
+<!--
+ * @Descripttion: 
+ * @Author: 李峥
  * @Date: 2022-12-03 17:21:35
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:13:57
+ * @LastEditTime: 2022-12-18 22:15:34
 -->
 <!--  -->
 <template>
@@ -32,6 +39,8 @@
               :is="comParse(element.componentsName)"
               :data="element"
               :class="toClassName(element)"
+              :ref="`component${element.id}`"
+              :componentsId="element.id"
             ></component>
           </template>
         </draggable>
@@ -61,18 +70,12 @@ import editAddVue from "@/components/modules/small_web/editAdd.vue"; // 小网�
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
 // 计算class样式
 import { toClassName } from "./utils.js";
+import { isValidKey } from "@/utils/index.js";
 import { useAppList } from "@/store/modules/appList.js";
 const pinia = useAppList();
 let list = ref(pinia.appList);
-watch(
-  () => pinia.appList,
-  (val) => {
-    console.log("🚀 ~ file: index.vue:69 ~ val", val);
-    list.value = val;
-  }
-);
 // 右键菜单 start
-const data = {};
+let data: any = {};
 const closeRightMenu = () => {
   rightClickMenu.close();
 };
@@ -108,8 +111,120 @@ const menuConfig = ref([
     },
   },
 ]);
+const menuList = {
+  layout: [
+    {
+      name: "添加应用",
+      icon: "Plus",
+      accelerator: "A", // 快捷键
+      click: () => {
+        openEditForm();
+      },
+    },
+    {
+      name: "刷新",
+      icon: "RefreshRight",
+      accelerator: "R",
+      click: () => {
+        window.location.reload();
+      },
+    },
+  ],
+  app: [
+    {
+      name: "在新标签页中打开",
+      icon: "Position",
+      click: (obj: any) => {
+        console.log("🚀 ~ file: index.vue:147 ~ data", obj);
+        if (obj.url) {
+          window.open(obj.url);
+        } else {
+          console.log("没有url");
+        }
+      },
+    },
+    {
+      name: "复制链接",
+      icon: "Connection",
+      click: (data: any) => {
+        if (data.url) {
+          const input = document.createElement("input");
+          input.setAttribute("readonly", "readonly");
+          input.setAttribute("value", data.url);
+          document.body.appendChild(input);
+          input.select();
+          if (document.execCommand("copy")) {
+            document.execCommand("copy");
+            window.$msgSuccess("复制成功");
+          }
+          document.body.removeChild(input);
+        } else {
+          console.log("没有url");
+        }
+      },
+    },
+    {
+      name: "布局",
+      icon: "Layout",
+      click: () => {
+        console.log("布局");
+      },
+    },
+    {
+      name: "编辑",
+      icon: "EditPen",
+      click: () => {
+        openEditForm();
+      },
+    },
+    {
+      name: "删除",
+      icon: "Delete",
+      click: () => {
+        console.log("删除");
+      },
+    },
+  ],
+};
 const rightClick = (event: any) => {
-  rightClickMenu.open(data, event, menuConfig);
+  // 获取当前点击的元素,判断是document还是组件
+  const target = event.target;
+  // 若点击的是layout
+  let eventId = getComponentInfo(target);
+  // 右键点击的是空白区域
+  if (eventId == "layout") {
+    data.componentsName = "layout";
+    menuConfig.value = menuList.layout;
+  } else {
+    // 点击的是组件
+    // 获取点击的组件id
+    // 根据组件的id获取组件信息
+    data = pinia.appList.find((item) => {
+      return item.id == eventId;
+    });
+    menuConfig.value = parseRightClickMenu(data);
+  }
+  rightClickMenu.open(data, event, menuConfig.value);
+};
+// 根据右键点击的内容,渲染不同的右键菜单
+const parseRightClickMenu = (component: any) => {
+  const key: string = component.type;
+  if (!isValidKey(key, menuList)) {
+    throw new Error("未知的组件类型");
+  }
+  return menuList[key];
+};
+// 递归获取组件信息
+const getComponentInfo: any = (target: any) => {
+  if (target.className == "layout") {
+    return "layout";
+  } else {
+    if (target.getAttribute("componentsId")) {
+      return target.getAttribute("componentsId");
+    } else {
+      return getComponentInfo(target.parentNode);
+    }
+  }
 };
 // 右键菜单 end
 

@@ -3,10 +3,10 @@
  * @Author: 李峥
  * @Date: 2022-12-16 23:20:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:20:01
+ * @LastEditTime: 2022-12-18 22:51:44
 -->
 <template>
-  <div class="web_icon weather" @contextmenu.prevent.stop="rightClick">
+  <div class="web_icon weather">
     <template v-if="props.data.layout == '1X1'">
       <div
         class="weather-box photo"

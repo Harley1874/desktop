@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:15:13
+ * @LastEditTime: 2022-12-18 22:38:52
 -->
 <template>
   <div>
@@ -141,7 +141,7 @@ const comParse = (str: String) => {
 };
 // 组件方法  1. 调用传入的方法 2. 关闭右键菜单
 const handel = (item: any) => {
-  item.click();
+  item.click(props.data);
   closeRightClickMenu();
 };
 // 注册快捷键模块 start

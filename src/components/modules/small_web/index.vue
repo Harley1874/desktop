@@ -3,15 +3,12 @@
  * @Author: 李峥
  * @Date: 2022-12-14 22:08:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:20:40
+ * @LastEditTime: 2022-12-18 22:51:57
 -->
 <template>
-  <div
-    class="web_icon"
-    @click="event"
-    @contextmenu.prevent.stop="rightClick"
-    :layout="props.data.layout"
-  >
+  <div class="web_icon" @click="event" :layout="props.data.layout">
+    <!-- @contextmenu.prevent.stop="rightClick" -->
+
     <div class="photo" :style="{ backgroundColor: data.color }">
       <template v-if="data.img">
         <img :src="data.img" />
@@ -88,7 +85,7 @@ let data = ref(props.data);
 // const { data } = props;
 // 监听data的变化，如果变化了，就重新计算布局
 const event = () => {
-  switch (data.type) {
+  switch (data.value.type) {
     // 添加应用
     case "addApp":
       popup.name = "添加应用";
@@ -96,7 +93,7 @@ const event = () => {
       break;
     // 打开应用
     case "app":
-      window.open(data.url);
+      window.open(data.value.url);
       break;
     default:
       break;
