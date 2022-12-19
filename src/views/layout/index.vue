@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 21:43:41
+ * @LastEditTime: 2022-12-19 22:10:49
 -->
 <!--
  * @Descripttion: 
@@ -24,7 +24,7 @@
       <div class="modules-page">
         <draggable
           item-key="id"
-          :list="list"
+          :list="pinia.appList"
           ghost-class="ghost"
           chosen-class="chosenClass"
           animation="300"
@@ -63,7 +63,6 @@
 
 <script setup lang="ts">
 import { ref, markRaw, watch } from "vue";
-import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
@@ -78,15 +77,6 @@ import { toClassName } from "./utils.js";
 import { isValidKey } from "@/utils/index.js";
 import { useAppList } from "@/store/modules/appList.js";
 const pinia = useAppList();
-let list = ref(pinia.appList);
-pinia.$subscribe(
-  (mutation, state) => {
-    console.log("🚀 ~ file: index.vue:84 ~ state", state);
-    list.value = state.appList;
-    console.log("🚀 ~ file: index.vue:86 ~ list", list);
-  },
-  { detached: false }
-);
 // 右键菜单 start
 let data: any = {};
 let rightData: any = ref({});

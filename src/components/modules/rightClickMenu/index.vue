@@ -148,7 +148,6 @@ const copyUrl = () => {
   const input = document.createElement("input");
   input.setAttribute("readonly", "readonly");
   input.setAttribute("value", data.url);
-  console.log("🚀 ~ file: index.vue:63 ~ copyUrl ~ data.url", data.url);
   document.body.appendChild(input);
   input.select();
   if (document.execCommand("copy")) {
