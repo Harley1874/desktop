@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 19:58:29
+ * @LastEditTime: 2022-12-19 20:49:10
 -->
 <template>
   <div>
@@ -107,6 +107,10 @@ const comParse = (str: String) => {
       return markRaw(EditPen);
     case "Delete":
       return markRaw(Delete);
+    case "Position":
+      return markRaw(Position);
+    case "Connection":
+      return markRaw(Connection);
     default:
       return;
   }
@@ -201,7 +205,7 @@ const editLayout = (item: any, editlayout: any) => {
   if (dom) dom.classList.remove("active");
   pinia.editLayout(item.id, editlayout);
 };
-// pinia.SETAPPLIST();
+pinia.SETAPPLIST();
 // 添加应用
 const createApp = () => {
   closeRightClickMenu();

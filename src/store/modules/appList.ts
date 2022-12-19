@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-17 15:35:14
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:06:20
+ * @LastEditTime: 2022-12-19 21:33:30
  */
 import { defineStore } from "pinia";
 import { list } from "./appListConfig.js";
@@ -24,7 +24,7 @@ export const useAppList = defineStore("appList", {
   },
   actions: {
     SETAPPLIST() {
-      this.appList = list;
+      // this.appList = list;
     },
     editLayout(id: string, layoutStr: string) {
       const index = this.appList.findIndex((item: any) => item.id === id);
@@ -32,6 +32,10 @@ export const useAppList = defineStore("appList", {
     },
     createApp(obj: any) {
       this.appList.push(obj);
+    },
+    editApp(obj: any) {
+      const index = this.appList.findIndex((item: any) => item.id === obj.id);
+      this.appList[index] = obj;
     },
   },
   persist: {

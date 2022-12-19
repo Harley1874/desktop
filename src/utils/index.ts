@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-18 20:17:55
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 22:31:29
+ * @LastEditTime: 2022-12-19 20:35:32
  */
 /* 大写转小写
  * @param {String} str
@@ -33,4 +33,24 @@ export function isValidKey(
   object: object
 ): key is keyof typeof object {
   return key in object;
+}
+
+/* 深拷贝
+ * @Descripttion:
+ * @param {object} target
+ * @return {*}
+ * @example
+ * deepClone({a: 1}) => {a: 1}
+ * deepClone({a: {b: 1}}) => {a: {b: 1}}
+ */
+export function deepClone(target: any) {
+  if (typeof target === "object" && target !== null) {
+    const cloneTarget: any = Array.isArray(target) ? [] : {};
+    for (const key in target) {
+      cloneTarget[key] = deepClone(target[key]);
+    }
+    return cloneTarget;
+  } else {
+    return target;
+  }
 }

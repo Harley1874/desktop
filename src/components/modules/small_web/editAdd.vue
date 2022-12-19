@@ -25,7 +25,7 @@
         :prefix-icon="EditPen"
       />
     </el-form-item>
-    <el-form-item label="图标颜色" prop="color">
+    <el-form-item label="图标颜色">
       <el-color-picker v-model="ruleForm.color" />
     </el-form-item>
     <el-form-item label="">
@@ -40,20 +40,35 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive, ref, defineEmits } from "vue";
+import { reactive, ref, defineEmits, watch } from "vue";
 import type { FormInstance, FormRules } from "element-plus";
 import { Link, EditPen } from "@element-plus/icons-vue";
+import { deepClone } from "@/utils";
 
 const emit = defineEmits(["submit", "cancel"]);
 
 // 表单dom
 const ruleFormRef = ref<FormInstance>();
+
+// 编辑
+const isEdit = ref(false);
+const props = defineProps({
+  data: {
+    type: Object,
+    default: () => {},
+  },
+});
 // 表单数据
-const ruleForm = reactive({
+let ruleForm: any = ref({
   url: "",
   name: "",
   color: "",
 });
+// 存在id，则为编辑
+if (props.data.id) {
+  isEdit.value = true;
+  ruleForm.value = deepClone(props.data);
+}
 // 弹窗表单验证
 const rules = reactive<FormRules>({
   url: [
@@ -70,13 +85,13 @@ const rules = reactive<FormRules>({
       trigger: "change",
     },
   ],
-  color: [
-    {
-      required: true,
-      message: "请选择颜色",
-      trigger: "change",
-    },
-  ],
+  // color: [
+  //   {
+  //     required: true,
+  //     message: "请选择颜色",
+  //     trigger: "change",
+  //   },
+  // ],
 });
 
 // 表单提交
@@ -85,7 +100,9 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       // emit提交至父组件
-      emit("submit", ruleForm);
+      emit("submit", ruleForm.value, isEdit.value);
+      // 删除弹窗的数据
+      resetForm(formEl);
     } else {
       console.log("error submit!", fields);
     }

@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 19:59:10
+ * @LastEditTime: 2022-12-19 21:43:41
 -->
 <!--
  * @Descripttion: 
@@ -52,13 +52,18 @@
       width="30%"
       center
     >
-      <editAddVue @submit="submit"></editAddVue>
+      <editAddVue
+        v-if="centerDialogVisible"
+        @submit="submit"
+        :data="rightData"
+      ></editAddVue>
     </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, markRaw, onMounted, nextTick, watch } from "vue";
+import { ref, markRaw, watch } from "vue";
+import { storeToRefs } from "pinia";
 import draggable from "vuedraggable";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
@@ -74,8 +79,17 @@ import { isValidKey } from "@/utils/index.js";
 import { useAppList } from "@/store/modules/appList.js";
 const pinia = useAppList();
 let list = ref(pinia.appList);
+pinia.$subscribe(
+  (mutation, state) => {
+    console.log("🚀 ~ file: index.vue:84 ~ state", state);
+    list.value = state.appList;
+    console.log("🚀 ~ file: index.vue:86 ~ list", list);
+  },
+  { detached: false }
+);
 // 右键菜单 start
 let data: any = {};
+let rightData: any = ref({});
 const closeRightMenu = () => {
   rightClickMenu.close();
 };
@@ -135,7 +149,6 @@ const menuList = {
       name: "在新标签页中打开",
       icon: "Position",
       click: (obj: any) => {
-        console.log("🚀 ~ file: index.vue:147 ~ data", obj);
         if (obj.url) {
           window.open(obj.url);
         } else {
@@ -146,7 +159,7 @@ const menuList = {
     {
       name: "复制链接",
       icon: "Connection",
-      click: (data: any) => {
+      click: (obj: any) => {
         if (data.url) {
           const input = document.createElement("input");
           input.setAttribute("readonly", "readonly");
@@ -178,7 +191,8 @@ const menuList = {
     {
       name: "编辑",
       icon: "EditPen",
-      click: () => {
+      click: (obj: any) => {
+        rightData.value = obj;
         openEditForm();
       },
     },
@@ -267,9 +281,15 @@ const openEditForm = () => {
   centerDialogVisible.value = true;
 };
 // 弹窗的确定按钮
-const submit = (val: any) => {
-  if (dialogTitle.value == "添加应用") {
-    // 此处为添加应用的逻辑
+const submit = (val: any, isEdit: boolean) => {
+  // 此处为编辑
+  if (isEdit == true) {
+    const obj = {
+      ...rightData.value,
+      ...val,
+    };
+    pinia.editApp(obj);
+  } else {
     const obj = {
       ...val,
       componentsName: "smallWeb",
@@ -281,10 +301,24 @@ const submit = (val: any) => {
       url: val.url,
     };
     pinia.createApp(obj);
-  } else {
   }
-
+  rightData.value = {};
   centerDialogVisible.value = false;
+  // if (dialogTitle.value == "添加应用") {
+  //   // 此处为添加应用的逻辑
+  //   const obj = {
+  //     ...val,
+  //     componentsName: "smallWeb",
+  //     // id为完全随机
+  //     id: Math.random().toString(36).substr(2),
+  //     layout: val.layout || "1X1",
+  //     name: val.name,
+  //     type: "app",
+  //     url: val.url,
+  //   };
+  //   pinia.createApp(obj);
+  // } else {
+  // }
 };
 </script>
 
