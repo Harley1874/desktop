@@ -3,10 +3,10 @@
  * @Author: 李峥
  * @Date: 2022-12-14 22:08:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 22:08:38
+ * @LastEditTime: 2022-12-19 22:58:20
 -->
 <template>
-  <div class="web_icon" :layout="props.data.layout">
+  <div class="web_icon" :layout="props.data.layout" @click="openWeb">
     <div class="photo" :style="{ backgroundColor: props.data.color }">
       <template v-if="props.data.img">
         <img :src="props.data.img" />
@@ -24,6 +24,13 @@
 <script setup lang="ts">
 // 父页面像本页面传值
 const props = defineProps(["data"]);
+const openWeb = () => {
+  if (props.data.url) {
+    window.open(props.data.url, "_blank");
+  } else {
+    console.log("没有url");
+  }
+};
 const getHttpIcon = () => {
   console.log("获取图标");
 };

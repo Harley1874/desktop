@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 22:10:49
+ * @LastEditTime: 2022-12-19 23:23:43
 -->
 <!--
  * @Descripttion: 
@@ -36,7 +36,7 @@
         >
           <template #item="{ element }">
             <component
-              :is="comParse(element.componentsName)"
+              :is="comRender(element.componentsName)"
               :data="element"
               :class="toClassName(element)"
               :ref="`component${element.id}`"
@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, markRaw, watch } from "vue";
+import { ref, markRaw } from "vue";
 import draggable from "vuedraggable";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
@@ -83,38 +83,6 @@ let rightData: any = ref({});
 const closeRightMenu = () => {
   rightClickMenu.close();
 };
-const menuConfig = ref([
-  {
-    name: "添加应用",
-    icon: "Plus",
-    accelerator: "A", // 快捷键
-    click: () => {
-      openEditForm();
-    },
-  },
-  {
-    name: "刷新",
-    icon: "RefreshRight",
-    accelerator: "R",
-    click: () => {
-      window.location.reload();
-    },
-  },
-  {
-    name: "编辑",
-    icon: "EditPen",
-    click: () => {
-      openEditForm();
-    },
-  },
-  {
-    name: "删除",
-    icon: "Delete",
-    click: () => {
-      console.log("删除");
-    },
-  },
-]);
 const menuList = {
   layout: [
     {
@@ -150,10 +118,10 @@ const menuList = {
       name: "复制链接",
       icon: "Connection",
       click: (obj: any) => {
-        if (data.url) {
+        if (obj.url) {
           const input = document.createElement("input");
           input.setAttribute("readonly", "readonly");
-          input.setAttribute("value", data.url);
+          input.setAttribute("value", obj.url);
           document.body.appendChild(input);
           input.select();
           if (document.execCommand("copy")) {
@@ -189,12 +157,46 @@ const menuList = {
     {
       name: "删除",
       icon: "Delete",
+      click: (obj: any) => {
+        if (obj.id) {
+          pinia.deleteApp(obj.id);
+        } else {
+          console.log("没有id");
+        }
+      },
+    },
+  ],
+  addApp: [
+    {
+      name: "布局",
+      icon: "Layout",
+      type: "submenu",
+      options: [
+        { name: "1X1", layout: "1X1" },
+        { name: "1X2", layout: "1X2" },
+        { name: "2X2", layout: "2X2" },
+        { name: "2X1", layout: "2X1" },
+        { name: "2X4", layout: "2X4" },
+      ],
+    },
+    {
+      name: "编辑",
+      icon: "EditPen",
+      click: (obj: any) => {
+        rightData.value = obj;
+        openEditForm();
+      },
+    },
+    {
+      name: "删除",
+      icon: "Delete",
       click: () => {
         console.log("删除");
       },
     },
   ],
 };
+const menuConfig = ref(menuList.layout);
 const rightClick = (event: any) => {
   // 获取当前点击的元素,判断是document还是组件
   const target = event.target;
@@ -238,7 +240,7 @@ const getComponentInfo: any = (target: any) => {
 // 右键菜单 end
 
 // 组件渲染
-const comParse = (str: String) => {
+const comRender = (str: String) => {
   // 动态组件渲染
   switch (str) {
     case "weather":
@@ -274,21 +276,14 @@ const openEditForm = () => {
 const submit = (val: any, isEdit: boolean) => {
   // 此处为编辑
   if (isEdit == true) {
-    const obj = {
+    let obj = {
       ...rightData.value,
       ...val,
     };
     pinia.editApp(obj);
   } else {
-    const obj = {
+    let obj = {
       ...val,
-      componentsName: "smallWeb",
-      // id为完全随机
-      id: Math.random().toString(36).substr(2),
-      layout: val.layout || "1X1",
-      name: val.name,
-      type: "app",
-      url: val.url,
     };
     pinia.createApp(obj);
   }

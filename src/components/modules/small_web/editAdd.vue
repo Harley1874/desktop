@@ -10,7 +10,7 @@
     <el-form-item label="地址" prop="url">
       <el-input
         v-model="ruleForm.url"
-        placeholder="请输入地址"
+        placeholder="Https://"
         :prefix-icon="Link"
       >
         <!-- <template #append>
@@ -77,6 +77,12 @@ const rules = reactive<FormRules>({
       message: "请输入地址",
       trigger: "blur",
     },
+    {
+      // 是否包含www.
+      pattern: /^(www\.)?/,
+      message: "请输入正确的地址",
+      trigger: "change",
+    },
   ],
   name: [
     {
@@ -100,7 +106,19 @@ const submitForm = async (formEl: FormInstance | undefined) => {
   await formEl.validate((valid, fields) => {
     if (valid) {
       // emit提交至父组件
-      emit("submit", ruleForm.value, isEdit.value);
+      let obj = {
+        id: Math.random().toString(36).substr(2),
+        componentsName: "small_web",
+        layout: "1X1",
+        type: "app",
+        ...ruleForm.value,
+      };
+      // 默认属性
+      const reg = /^((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/;
+      if (!reg.test(obj.url)) {
+        obj.url = "https://" + obj.url;
+      }
+      emit("submit", obj, isEdit.value);
       // 删除弹窗的数据
       resetForm(formEl);
     } else {
