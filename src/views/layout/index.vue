@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 22:52:09
+ * @LastEditTime: 2022-12-19 19:59:10
 -->
 <!--
  * @Descripttion: 
@@ -166,9 +166,14 @@ const menuList = {
     {
       name: "布局",
       icon: "Layout",
-      click: () => {
-        console.log("布局");
-      },
+      type: "submenu",
+      options: [
+        { name: "1X1", layout: "1X1" },
+        { name: "1X2", layout: "1X2" },
+        { name: "2X2", layout: "2X2" },
+        { name: "2X1", layout: "2X1" },
+        { name: "2X4", layout: "2X4" },
+      ],
     },
     {
       name: "编辑",

@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 22:38:52
+ * @LastEditTime: 2022-12-19 19:58:29
 -->
 <template>
   <div>
@@ -15,40 +15,9 @@
       }"
     >
       <ul>
-        <li v-for="item in menuConfig" @click="handel(item)">
-          <component :style="iconStyle" :is="comParse(item.icon)"></component>
-          <span class="text"
-            >{{ item.name }}
-            <span v-if="item.accelerator" class="tips">{{
-              item.accelerator
-            }}</span>
-          </span>
-        </li>
-        <template v-if="false">
-          <template v-if="!data.url">
-            <li @click="createApp">
-              <Plus :style="iconStyle" />
-              <span class="text">
-                添加应用
-                <span class="tips">A</span>
-              </span>
-            </li>
-          </template>
-          <template v-if="data.url">
-            <li @click="openWeb">
-              <Position :style="iconStyle" />
-              <span class="text"> 在新标签页打开 </span>
-            </li>
-            <li class="menu-item" @click="copyUrl">
-              <Connection :style="iconStyle" />
-              <span class="text"> 复制链接 </span>
-            </li>
-            <li>
-              <EditPen :style="iconStyle" />
-              <span class="text"> 编辑 </span>
-            </li>
-          </template>
-          <template v-if="data.id">
+        <template v-for="item in menuConfig">
+          <!-- 布局菜单 -->
+          <template v-if="item.type == 'submenu'">
             <li notHover>
               <EditPen :style="iconStyle" />
               <span class="text"> 布局 </span>
@@ -67,18 +36,21 @@
               </div>
             </div>
           </template>
-
-          <li @click="refreshBtn">
-            <EditPen :style="iconStyle" />
-            <span class="text">
-              刷新
-              <span class="tips">R</span>
-            </span>
-          </li>
-          <li>
-            <Delete :style="iconStyle" />
-            <span class="text"> 删除 </span>
-          </li>
+          <!-- 常规菜单 -->
+          <template v-else>
+            <li @click="handel(item)">
+              <component
+                :style="iconStyle"
+                :is="comParse(item.icon)"
+              ></component>
+              <span class="text"
+                >{{ item.name }}
+                <span v-if="item.accelerator" class="tips">{{
+                  item.accelerator
+                }}</span>
+              </span>
+            </li>
+          </template>
         </template>
       </ul>
     </div>
