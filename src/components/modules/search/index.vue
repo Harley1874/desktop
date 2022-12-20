@@ -3,14 +3,12 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:45:59
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-16 23:24:37
+ * @LastEditTime: 2022-12-20 13:15:00
 -->
 <!--  -->
 <template>
   <div class="module scarch">
-    <!-- <el-button>Default</el-button> -->
-    <!-- <el-input v-model="input" placeholder="请输入内容"></el-input> -->
-    <!-- <el-input
+    <el-input
       v-model="input3"
       placeholder="输入并搜索"
       :style="{
@@ -28,7 +26,7 @@
           <el-option label="添加" value="5" />
         </el-select>
       </template>
-    </el-input> -->
+    </el-input>
   </div>
 </template>
 
@@ -39,8 +37,6 @@ const select = ref("1");
 // 获取css的--el-border-color变量
 const color = ref("#dcdfe6");
 const borderRadius = ref("100px");
-
-const input = ref("");
 </script>
 
 <style lang="scss" scoped>

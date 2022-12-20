@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 22:49:37
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 20:49:10
+ * @LastEditTime: 2022-12-20 13:31:58
 -->
 <template>
   <div>
@@ -24,15 +24,15 @@
             </li>
             <div class="layout_box">
               <div
-                v-for="item in layoutList"
+                v-for="itx in item.options"
                 class="layout_item"
                 :class="{
                   active: layoutActive(data),
                 }"
-                :layout="item.layout"
-                @click="editLayout(data, item.layout)"
+                :layout="itx.layout"
+                @click="editLayout(data, itx.layout)"
               >
-                {{ item.name }}
+                {{ itx.name }}
               </div>
             </div>
           </template>
@@ -186,12 +186,12 @@ const layoutList = [
     layout: "1X2",
   },
   {
-    name: "2X2",
-    layout: "2X2",
-  },
-  {
     name: "2X1",
     layout: "2X1",
+  },
+  {
+    name: "2X2",
+    layout: "2X2",
   },
   {
     name: "2X4",

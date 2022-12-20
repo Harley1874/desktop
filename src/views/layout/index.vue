@@ -3,16 +3,8 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-19 23:23:43
+ * @LastEditTime: 2022-12-20 17:17:04
 -->
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-03 17:21:35
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 22:15:34
--->
-<!--  -->
 <template>
   <div class="layout" @click="closeRightMenu" @contextmenu.prevent="rightClick">
     <div class="left-scroll"></div>
@@ -51,10 +43,16 @@
       :title="dialogTitle"
       width="30%"
       center
+      draggable
+      lock-scroll
+      custom-class="dialog"
+      top="0"
+      @close="closeEditAddPop"
     >
       <editAddVue
         v-if="centerDialogVisible"
         @submit="submit"
+        @cancel="closeEditAddPop"
         :data="rightData"
       ></editAddVue>
     </el-dialog>
@@ -141,8 +139,8 @@ const menuList = {
       options: [
         { name: "1X1", layout: "1X1" },
         { name: "1X2", layout: "1X2" },
-        { name: "2X2", layout: "2X2" },
         { name: "2X1", layout: "2X1" },
+        { name: "2X2", layout: "2X2" },
         { name: "2X4", layout: "2X4" },
       ],
     },
@@ -174,8 +172,8 @@ const menuList = {
       options: [
         { name: "1X1", layout: "1X1" },
         { name: "1X2", layout: "1X2" },
-        { name: "2X2", layout: "2X2" },
         { name: "2X1", layout: "2X1" },
+        { name: "2X2", layout: "2X2" },
         { name: "2X4", layout: "2X4" },
       ],
     },
@@ -305,9 +303,21 @@ const submit = (val: any, isEdit: boolean) => {
   // } else {
   // }
 };
+const closeEditAddPop = () => {
+  // 初始化rightData的数据
+  rightData.value = {};
+  centerDialogVisible.value = false;
+};
 </script>
 
 <style lang="scss" scoped>
+::v-deep {
+  .el-overlay-dialog {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
 .layout {
   width: 100vw;
   height: 100vh;

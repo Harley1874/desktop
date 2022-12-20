@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-16 23:20:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 22:51:44
+ * @LastEditTime: 2022-12-20 13:27:43
 -->
 <template>
   <div class="web_icon weather">
@@ -195,7 +195,7 @@ const weekCalc = (val: string) => {
 };
 const today = dayjs().format("YYYY-MM-DD");
 const piniaToday = weatherStore.nowWeather.fxDate;
-if (today !== piniaToday) {
+if (today !== piniaToday || weatherStore.weatherList.length == 0) {
   weatherStore.GET_WEATHER();
 }
 const rightClick = (event: any) => {
