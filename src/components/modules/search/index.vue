@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:45:59
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 17:52:04
+ * @LastEditTime: 2022-12-21 18:07:06
 -->
 <!--  -->
 <template>
@@ -79,8 +79,10 @@ const handleSelect = (item: any) => {
   margin-top: 40px;
   text-align: center;
   width: 460px;
-  .scarch-autocomplete {
-    width: 100%;
+  ::v-deep {
+    .scarch-autocomplete {
+      width: 100%;
+    }
   }
 }
 </style>
