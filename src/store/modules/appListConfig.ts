@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 21:48:34
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 11:58:02
+ * @LastEditTime: 2022-12-21 18:08:45
  */
 export const list: any = [
   {
@@ -15,15 +15,15 @@ export const list: any = [
     url: "",
     layout: "2X4",
   },
-  {
-    type: "systemApp",
-    name: "文件夹",
-    componentsName: "folder",
-    id: "folder",
-    img: "",
-    url: "",
-    layout: "2X2",
-  },
+  // {
+  //   type: "systemApp",
+  //   name: "文件夹",
+  //   componentsName: "folder",
+  //   id: "folder",
+  //   img: "",
+  //   url: "",
+  //   layout: "2X2",
+  // },
   {
     type: "addApp",
     name: "添加应用",

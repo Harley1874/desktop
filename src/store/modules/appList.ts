@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-17 15:35:14
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 17:02:18
+ * @LastEditTime: 2022-12-21 21:26:46
  */
 import { defineStore } from "pinia";
 import { list } from "./appListConfig.js";
@@ -40,6 +40,11 @@ export const useAppList = defineStore("appList", {
     deleteApp(id: string) {
       const index = this.appList.findIndex((item: any) => item.id === id);
       this.appList.splice(index, 1);
+    },
+    // 重置APPList
+    resetAppList() {
+      this.appList = list;
+      window.$msgSuccess("重置成功");
     },
   },
   persist: {

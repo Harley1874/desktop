@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 17:17:04
+ * @LastEditTime: 2022-12-21 21:33:15
 -->
 <template>
   <div class="layout" @click="closeRightMenu" @contextmenu.prevent="rightClick">
@@ -56,6 +56,7 @@
         :data="rightData"
       ></editAddVue>
     </el-dialog>
+    <systemSetting></systemSetting>
   </div>
 </template>
 
@@ -65,6 +66,7 @@ import draggable from "vuedraggable";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
 import folder from "@/components/modules/custom/Folder/index.vue";
+import systemSetting from "@/components/systemSetting/index.vue";
 // 小组件
 import weather from "@/components/modules/custom/Weather/index.vue"; // 天气组件
 import smallWeb from "@/components/modules/small_web/index.vue"; // 小网页组件
@@ -321,8 +323,9 @@ const closeEditAddPop = () => {
 .layout {
   width: 100vw;
   height: 100vh;
-  background: 100% auto no-repeat fixed center center;
+  background: no-repeat fixed;
   background-image: url("../../assets/img/bgImg/bg.jpeg");
+  background-size: 100% auto;
 }
 .content {
   .modules-block {

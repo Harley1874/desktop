@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-02 22:59:43
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 18:02:23
+ * @LastEditTime: 2022-12-21 21:29:52
  */
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -32,14 +32,36 @@ const msgSuccess = (msg: string, timer: number) => {
     showClose: true,
   });
 };
+const msgError = (msg: string, timer: number) => {
+  ElMessage({
+    message: msg,
+    type: "error",
+    duration: timer || 1500,
+    showClose: true,
+  });
+};
+const msg = (msg: string, timer: number) => {
+  ElMessage({
+    message: msg,
+    type: "info",
+    duration: timer || 1500,
+    showClose: true,
+  });
+};
 app.config.globalProperties.$msgSuccess = msgSuccess;
+app.config.globalProperties.$msgError = msgError;
+app.config.globalProperties.$msg = msg;
 // window 添加全局方法
 declare global {
   interface Window {
     $msgSuccess: any;
+    $msgError: any;
+    $msg: any;
     baidu: any;
   }
 }
 window.$msgSuccess = msgSuccess;
+window.$msgError = msgError;
+window.$msg = msg;
 
 app.use(store).use(router).use(ElementPlus).mount("#app");
