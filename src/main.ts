@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-02 22:59:43
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 19:40:30
+ * @LastEditTime: 2022-12-21 18:02:23
  */
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -37,6 +37,7 @@ app.config.globalProperties.$msgSuccess = msgSuccess;
 declare global {
   interface Window {
     $msgSuccess: any;
+    baidu: any;
   }
 }
 window.$msgSuccess = msgSuccess;

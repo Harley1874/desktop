@@ -30,6 +30,7 @@
     "sass-loader": "^13.2.0",
     "style-loader": "^3.3.1",
     "vue": "^3.2.45",
+    "vue-jsonp": "^2.0.0",
     "vue-router": "^4.1.6",
     "vuedraggable": "^4.1.0"
   },
