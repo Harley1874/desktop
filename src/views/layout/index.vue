@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 21:33:15
+ * @LastEditTime: 2022-12-25 16:42:36
 -->
 <template>
   <div class="layout" @click="closeRightMenu" @contextmenu.prevent="rightClick">
@@ -33,6 +33,7 @@
               :class="toClassName(element)"
               :ref="`component${element.id}`"
               :componentsId="element.id"
+              @click="clickCustomComponent(element)"
             ></component>
           </template>
         </draggable>
@@ -63,12 +64,14 @@
 <script setup lang="ts">
 import { ref, markRaw } from "vue";
 import draggable from "vuedraggable";
+import { deepClone } from "@/utils/index.js";
 import dateTime from "@/components/modules/dateTime/index.vue";
 import search from "@/components/modules/search/index.vue";
 import folder from "@/components/modules/custom/Folder/index.vue";
 import systemSetting from "@/components/systemSetting/index.vue";
 // 小组件
 import weather from "@/components/modules/custom/Weather/index.vue"; // 天气组件
+import memorandum from "@/components/modules/custom/Memorandum/index.vue"; // 备忘录组件
 import smallWeb from "@/components/modules/small_web/index.vue"; // 小网页组件
 import editAddVue from "@/components/modules/small_web/editAdd.vue"; // 小网页-编辑新值组件
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
@@ -195,6 +198,24 @@ const menuList = {
       },
     },
   ],
+  systemApp: [
+    {
+      name: "添加应用",
+      icon: "Plus",
+      accelerator: "A", // 快捷键
+      click: () => {
+        openEditForm();
+      },
+    },
+    {
+      name: "刷新",
+      icon: "RefreshRight",
+      accelerator: "R",
+      click: () => {
+        window.location.reload();
+      },
+    },
+  ],
 };
 const menuConfig = ref(menuList.layout);
 const rightClick = (event: any) => {
@@ -210,10 +231,10 @@ const rightClick = (event: any) => {
     // 点击的是组件
     // 获取点击的组件id
     // 根据组件的id获取组件信息
-    data = pinia.appList.find((item) => {
+    data = deepClone(pinia.appList).find((item: any) => {
       return item.id == eventId;
     });
-    menuConfig.value = parseRightClickMenu(data);
+    menuConfig.value = parseRightClickMenu(data) || menuList.layout;
   }
   rightClickMenu.open(data, event, menuConfig.value);
 };
@@ -247,6 +268,8 @@ const comRender = (str: String) => {
       return markRaw(weather);
     case "folder":
       return markRaw(folder);
+    case "memorandum":
+      return markRaw(memorandum);
     default:
       return markRaw(smallWeb);
   }
@@ -309,6 +332,19 @@ const closeEditAddPop = () => {
   // 初始化rightData的数据
   rightData.value = {};
   centerDialogVisible.value = false;
+};
+// 组件点击事件-->官方组件打开弹窗
+const JGdialogData = ref({
+  name: "",
+});
+const showDialog = ref(false);
+const clickCustomComponent = (element: any) => {
+  console.log("layout页面打开");
+  if (element.componentsName !== "smallWeb") {
+    showDialog.value = true;
+    JGdialogData.value = element;
+    return false;
+  }
 };
 </script>
 
