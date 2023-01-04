@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-02 22:59:43
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 21:29:52
+ * @LastEditTime: 2023-01-04 21:43:17
  */
 import { createApp } from "vue";
 import App from "./App.vue";
@@ -57,11 +57,24 @@ declare global {
     $msgSuccess: any;
     $msgError: any;
     $msg: any;
+    $copy: any;
     baidu: any;
   }
 }
 window.$msgSuccess = msgSuccess;
 window.$msgError = msgError;
 window.$msg = msg;
+window.$copy = (text: string) => {
+  const input = document.createElement("input");
+  input.setAttribute("readonly", "readonly");
+  input.setAttribute("value", text);
+  document.body.appendChild(input);
+  input.select();
+  if (document.execCommand("copy")) {
+    document.execCommand("copy");
+    window.$msgSuccess("复制成功");
+  }
+  document.body.removeChild(input);
+};
 
 app.use(store).use(router).use(ElementPlus).mount("#app");

@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 21:48:34
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 16:41:26
+ * @LastEditTime: 2023-01-04 20:20:35
  */
 export const list: any = [
   {
@@ -46,6 +46,15 @@ export const list: any = [
         updateTime: "2021-12-25 13:42:12",
       },
     ],
+  },
+  {
+    type: "systemApp",
+    name: "工具箱-存储换算器",
+    componentsName: "storageConversion",
+    id: "systemApp",
+    img: "",
+    url: "",
+    layout: "2X2",
   },
   // {
   //   type: "systemApp",

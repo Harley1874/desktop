@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 20:09:47
+ * @LastEditTime: 2023-01-04 20:24:21
 -->
 <template>
   <div
@@ -77,6 +77,7 @@ import systemSetting from "@/components/systemSetting/index.vue";
 // 小组件
 import weather from "@/components/modules/custom/Weather/index.vue"; // 天气组件
 import memorandum from "@/components/modules/custom/Memorandum/index.vue"; // 备忘录组件
+import storageConversion from "@/components/modules/custom/StorageConversion/index.vue"; // 存储换算器
 import smallWeb from "@/components/modules/small_web/index.vue"; // 小网页组件
 import editAddVue from "@/components/modules/small_web/editAdd.vue"; // 小网页-编辑新值组件
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
@@ -315,6 +316,8 @@ const comRender = (str: String) => {
       return markRaw(folder);
     case "memorandum":
       return markRaw(memorandum);
+    case "storageConversion":
+      return markRaw(storageConversion);
     default:
       return markRaw(smallWeb);
   }
