@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-21 18:47:15
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 21:32:53
+ * @LastEditTime: 2022-12-25 19:06:45
 -->
 <template>
   <div class="right-drawer" :class="{ show: props.modelValue }">
@@ -28,6 +28,7 @@
             class="main-box"
             v-if="list[listActive].name == '重置'"
           ></reset>
+          <wallpaper v-if="list[listActive].name == '壁纸'"></wallpaper>
         </div>
       </div>
     </div>
@@ -41,6 +42,7 @@
 <script setup lang="ts">
 import { ref, reactive, defineEmits, nextTick, watch } from "vue";
 import reset from "../reset/index.vue";
+import wallpaper from "../wallpaper/index.vue";
 const emit = defineEmits(["update:modelValue"]);
 const props = defineProps(["modelValue"]);
 const closeDrawer = () => {
@@ -48,10 +50,16 @@ const closeDrawer = () => {
 };
 const list = reactive([
   {
+    name: "壁纸",
+    title: "壁纸",
+    componentsName: "wallpaper",
+  },
+  {
     name: "重置",
     title: "重置设置",
     componentsName: "reset",
   },
+
   {
     name: "主题",
     title: "主题2",

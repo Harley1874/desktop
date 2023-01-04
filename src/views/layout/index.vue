@@ -3,10 +3,15 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 16:42:36
+ * @LastEditTime: 2023-01-04 20:09:47
 -->
 <template>
-  <div class="layout" @click="closeRightMenu" @contextmenu.prevent="rightClick">
+  <div
+    class="layout"
+    @click="closeRightMenu"
+    @contextmenu.prevent="rightClick"
+    :style="{ backgroundImage: backgroundBase64 }"
+  >
     <div class="left-scroll"></div>
     <div class="fixed-top">
       <dateTime class="component time"></dateTime>
@@ -62,7 +67,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, markRaw } from "vue";
+import { ref, markRaw, watch } from "vue";
 import draggable from "vuedraggable";
 import { deepClone } from "@/utils/index.js";
 import dateTime from "@/components/modules/dateTime/index.vue";
@@ -79,7 +84,47 @@ import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
 import { toClassName } from "./utils.js";
 import { isValidKey } from "@/utils/index.js";
 import { useAppList } from "@/store/modules/appList.js";
+
+// indexedDB数据库-读取壁纸
+import { db } from "@/utils/db.js";
+import { systemConfig } from "@/store/modules/appConfig/index.js";
+const appConfig = systemConfig();
 const pinia = useAppList();
+
+// 设置壁纸 start
+let wallpaperList: any = [];
+const backgroundBase64 = ref('url("/src/assets/img/bgImg/bg.jpeg")');
+db.myWallpaper.toArray().then((res) => {
+  wallpaperList = res.sort((a: any, b: any) => {
+    return a.id - b.id;
+  });
+  let wallpaperKey = appConfig.systemConfig.wallpaper;
+  setWallpaper(wallpaperKey);
+});
+
+const setWallpaper = (str: string) => {
+  if (str == "0") {
+    backgroundBase64.value = 'url("/src/assets/img/bgImg/bg.jpeg")';
+  } else {
+    backgroundBase64.value =
+      "url(" +
+      wallpaperList.find((item: any) => {
+        return item.key === str;
+      }).base64;
+    +")";
+  }
+};
+
+watch(
+  () => appConfig.systemConfig.wallpaper,
+  (key: string) => {
+    if (key) {
+      setWallpaper(key);
+    }
+  }
+);
+
+// 设置壁纸 end
 // 右键菜单 start
 let data: any = {};
 let rightData: any = ref({});
@@ -312,21 +357,6 @@ const submit = (val: any, isEdit: boolean) => {
   }
   rightData.value = {};
   centerDialogVisible.value = false;
-  // if (dialogTitle.value == "添加应用") {
-  //   // 此处为添加应用的逻辑
-  //   const obj = {
-  //     ...val,
-  //     componentsName: "smallWeb",
-  //     // id为完全随机
-  //     id: Math.random().toString(36).substr(2),
-  //     layout: val.layout || "1X1",
-  //     name: val.name,
-  //     type: "app",
-  //     url: val.url,
-  //   };
-  //   pinia.createApp(obj);
-  // } else {
-  // }
 };
 const closeEditAddPop = () => {
   // 初始化rightData的数据

@@ -36,7 +36,6 @@ const props = defineProps({
     default: () => {},
   },
 });
-console.log("props.data", props.data);
 const showDialog = ref(false);
 const openView = () => {
   showDialog.value = true;

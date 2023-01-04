@@ -1,3 +1,10 @@
+<!--
+ * @Descripttion: 
+ * @Author: 李峥
+ * @Date: 2022-12-25 17:59:08
+ * @LastEditors: 李峥
+ * @LastEditTime: 2022-12-25 21:05:55
+-->
 <!--  -->
 <template>
   <div class="reset-box">
@@ -10,8 +17,10 @@
 <script setup lang="ts">
 import { ref, reactive, defineComponent } from "vue";
 import { useAppList } from "@/store/modules/appList";
+import { systemConfig } from "@/store/modules/appConfig/index.js";
 import { ElMessageBox } from "element-plus";
 const pinia = useAppList();
+const appConfig = systemConfig();
 let a = ref("fasfsfa");
 let b = reactive({});
 const reset = () => {
@@ -22,6 +31,7 @@ const reset = () => {
   })
     .then(() => {
       pinia.resetAppList();
+      appConfig.init();
     })
     .catch(() => {
       window.$msg("已取消重置");

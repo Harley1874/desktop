@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-16 23:20:10
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 13:27:43
+ * @LastEditTime: 2022-12-25 21:11:05
 -->
 <template>
   <div class="web_icon weather">
@@ -152,7 +152,7 @@
         </div>
         <div class="bottom">
           <div class="day-list">
-            <div class="item" v-for="item in weatherList">
+            <div class="item" v-for="item in weatherStore.weatherList">
               <span class="text">{{ weekCalc(item.fxDate) }}</span>
               <el-icon :size="20"> <Sunny /></el-icon>
               <span class="min_max">{{
@@ -168,11 +168,11 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref, watch } from "vue";
+import { ref } from "vue";
 import { rightClickMenu } from "@/components/modules/rightClickMenu/index.js";
 import { useWeatherStore } from "@/store/modules/weather.js";
 import dayjs from "dayjs";
-const weatherStore = useWeatherStore();
+const weatherStore: any = useWeatherStore();
 // 父页面像本页面传值
 const props = defineProps(["data"]);
 let data = ref({});
