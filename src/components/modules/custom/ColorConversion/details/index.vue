@@ -11,13 +11,19 @@
       <p>颜色转换器</p>
     </div>
     <div class="main">
-      <el-form ref="ruleFormRef" :model="ruleForm" :rules="rules">
+      <el-form
+        ref="ruleFormRef"
+        :model="ruleForm"
+        :rules="rules"
+        @submit.native.prevent
+      >
         <el-form-item label-width="20" prop="inputValue">
           <el-row>
             <el-col :span="12">
               <el-input
                 v-model="ruleForm.inputValue"
                 placeholder="请输入色值"
+                @keyup.enter.native.stop="submitForm(ruleFormRef)"
               />
             </el-col>
             <el-col :span="4">
