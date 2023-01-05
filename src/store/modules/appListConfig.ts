@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-15 21:48:34
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 20:20:35
+ * @LastEditTime: 2023-01-04 22:26:01
  */
 export const list: any = [
   {
@@ -51,6 +51,15 @@ export const list: any = [
     type: "systemApp",
     name: "工具箱-存储换算器",
     componentsName: "storageConversion",
+    id: "systemApp",
+    img: "",
+    url: "",
+    layout: "2X2",
+  },
+  {
+    type: "systemApp",
+    name: "工具箱-颜色转换器",
+    componentsName: "colorConversion",
     id: "systemApp",
     img: "",
     url: "",

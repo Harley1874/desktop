@@ -1,9 +1,9 @@
-<!-- 存储换算器-弹窗详情
- * @Descripttion: 
+<!--
+ * @Descripttion: 存储换算器-弹窗详情
  * @Author: 李峥
  * @Date: 2023-01-04 20:29:37
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 20:29:41
+ * @LastEditTime: 2023-01-05 22:46:47
 -->
 <template>
   <div class="storageConversion-detail">
