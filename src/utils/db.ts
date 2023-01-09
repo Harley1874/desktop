@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-25 19:36:36
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 21:24:39
+ * @LastEditTime: 2023-01-09 21:39:14
  */
 import Dexie from "dexie";
 export class AppDatabase extends Dexie {
@@ -26,11 +26,11 @@ export class Contact {
     this.base64 = last;
     if (id) this.key = id;
   }
-  save() {
-    return db.transaction("rw", db.myWallpaper, async () => {
-      this.key = await db.myWallpaper.put(this);
-    });
-  }
+  // save() {
+  //   return db.transaction("rw", db.myWallpaper, async () => {
+  //     this.key = await db.myWallpaper.put(this);
+  //   });
+  // }
 }
 
 export var db = new AppDatabase();

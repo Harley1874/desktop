@@ -3,26 +3,31 @@
  * @Author: 李峥
  * @Date: 2022-12-25 17:59:08
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 21:05:55
+ * @LastEditTime: 2023-01-09 21:54:59
 -->
 <!--  -->
 <template>
   <div class="reset-box">
-    <div class="title">重置设置</div>
-    <div class="tips">恢复所有的设置项以及应用数据为初始状态</div>
-    <div class="btn" @click="reset">重置</div>
+    <div class="reset-item">
+      <div class="title">重置设置</div>
+      <div class="tips">恢复所有的设置项为初始状态</div>
+      <div class="btn" @click="reset">重置</div>
+    </div>
+    <div class="reset-item">
+      <div class="title">恢复出厂设置</div>
+      <div class="tips">恢复所有的设置项以及应用数据为初始状态</div>
+      <div class="btn" @click="resetAll">恢复</div>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, defineComponent } from "vue";
 import { useAppList } from "@/store/modules/appList";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 import { ElMessageBox } from "element-plus";
+import { db } from "@/utils/db.js";
 const pinia = useAppList();
 const appConfig = systemConfig();
-let a = ref("fasfsfa");
-let b = reactive({});
 const reset = () => {
   ElMessageBox.confirm("您确定要重置所有的设置跟应用数据吗？", "提示", {
     confirmButtonText: "确定重置",
@@ -37,9 +42,39 @@ const reset = () => {
       window.$msg("已取消重置");
     });
 };
+const resetAll = () => {
+  ElMessageBox.confirm("您确定要重置所有的设置吗？", "提示", {
+    confirmButtonText: "确定重置",
+    cancelButtonText: "取消",
+    type: "warning",
+  })
+    .then(() => {
+      // 删除indexDB数据库
+      indexDB_delete_library();
+      appConfig.init();
+    })
+    .catch(() => {
+      window.$msg("已取消重置");
+    });
+};
+
+// indexDB_delete_library
+const indexDB_delete_library = () => {
+  db.myWallpaper.toArray().then(() => {
+    db.myWallpaper.clear();
+    appConfig.DBCHANGE();
+    window.$msg("重置成功");
+  });
+};
 </script>
 
 <style lang="scss" scoped>
+.reset-item {
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #fff;
+}
 .title {
   font-size: 14px;
 }

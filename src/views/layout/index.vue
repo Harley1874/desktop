@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 22:26:15
+ * @LastEditTime: 2023-01-09 21:56:05
 -->
 <template>
   <div
@@ -96,13 +96,12 @@ const pinia = useAppList();
 // 设置壁纸 start
 let wallpaperList: any = [];
 const backgroundBase64 = ref('url("/src/assets/img/bgImg/bg.jpeg")');
-db.myWallpaper.toArray().then((res) => {
-  wallpaperList = res.sort((a: any, b: any) => {
-    return a.id - b.id;
-  });
+const getDbList = async () => {
+  wallpaperList = await db.myWallpaper.toArray();
   let wallpaperKey = appConfig.systemConfig.wallpaper;
   setWallpaper(wallpaperKey);
-});
+};
+getDbList();
 
 const setWallpaper = (str: string) => {
   if (str == "0") {
@@ -126,6 +125,13 @@ watch(
   }
 );
 
+// 壁纸数据库变化。需要重新获取壁纸列表
+watch(
+  () => appConfig.dbChange,
+  (num: number) => {
+    getDbList();
+  }
+);
 // 设置壁纸 end
 // 右键菜单 start
 let data: any = {};
