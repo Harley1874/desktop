@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-25 18:53:27
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 20:12:30
+ * @LastEditTime: 2023-01-09 21:53:28
 -->
 <template>
   <div class="wallpaper-box">
@@ -77,7 +77,7 @@ const upload = () => {
       };
       // 保存到数据库:indexDb
       db.myWallpaper.add(img).then((res) => {
-        console.log("保存到数据库", res);
+        pinia.DBCHANGE();
         getAllSql();
       });
       // db.myWallpaper;

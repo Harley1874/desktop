@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-21 18:47:15
  * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 19:06:45
+ * @LastEditTime: 2023-01-09 21:17:51
 -->
 <template>
   <div class="right-drawer" :class="{ show: props.modelValue }">
@@ -199,9 +199,6 @@ watch(
     .main-box {
       width: 100%;
       height: 100%;
-      background: #fff;
-      padding: 10px;
-      border-radius: 4px;
     }
   }
 }
