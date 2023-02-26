@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-25 18:53:27
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-09 21:53:28
+ * @LastEditTime: 2023-02-26 20:55:48
 -->
 <template>
   <div class="wallpaper-box">
@@ -14,11 +14,7 @@
         :class="{ active: classCalc('0') }"
       >
         <div class="wallpaper-item-img">
-          <img
-            style="width: 100%; height: 100%"
-            src="@/assets/img/bgImg/bg.jpeg"
-            fit="fit"
-          />
+          <img style="width: 100%; height: 100%" :src="bgImg" fit="fit" />
         </div>
         <div class="wallpaper-item-title">默认</div>
       </li>
@@ -45,7 +41,7 @@
 import { ref } from "vue";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 import { db } from "@/utils/db.js";
-
+import bgImg from "@/assets/img/bgImg/bg.jpeg";
 const pinia = systemConfig();
 
 // 查询数据库中的所有数据

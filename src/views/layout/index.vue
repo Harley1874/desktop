@@ -3,7 +3,7 @@
  * @Author: 李峥
  * @Date: 2022-12-14 21:05:22
  * @LastEditors: 李峥
- * @LastEditTime: 2023-01-09 21:56:05
+ * @LastEditTime: 2023-02-26 20:54:55
 -->
 <template>
   <div
@@ -92,10 +92,11 @@ import { db } from "@/utils/db.js";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 const appConfig = systemConfig();
 const pinia = useAppList();
+import bgImg from "@/assets/img/bgImg/bg.jpeg";
 
 // 设置壁纸 start
 let wallpaperList: any = [];
-const backgroundBase64 = ref('url("/src/assets/img/bgImg/bg.jpeg")');
+const backgroundBase64 = ref(bgImg);
 const getDbList = async () => {
   wallpaperList = await db.myWallpaper.toArray();
   let wallpaperKey = appConfig.systemConfig.wallpaper;
@@ -105,7 +106,7 @@ getDbList();
 
 const setWallpaper = (str: string) => {
   if (str == "0") {
-    backgroundBase64.value = 'url("/src/assets/img/bgImg/bg.jpeg")';
+    backgroundBase64.value = bgImg;
   } else {
     backgroundBase64.value =
       "url(" +
