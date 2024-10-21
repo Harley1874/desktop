@@ -7,11 +7,7 @@
         :class="{ active: classCalc('0') }"
       >
         <div class="wallpaper-item-img">
-          <img
-            style="width: 100%; height: 100%"
-            src="@/assets/img/bgImg/bg.jpeg"
-            fit="fit"
-          />
+          <img style="width: 100%; height: 100%" :src="bgImg" fit="fit" />
         </div>
         <div class="wallpaper-item-title">默认</div>
       </li>
@@ -38,7 +34,7 @@
 import { ref } from "vue";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 import { db } from "@/utils/db.js";
-
+import bgImg from "@/assets/img/bgImg/bg.jpeg";
 const pinia = systemConfig();
 
 // 查询数据库中的所有数据

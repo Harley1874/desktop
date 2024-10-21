@@ -85,6 +85,7 @@ import { db } from "@/utils/db.js";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 const appConfig = systemConfig();
 const pinia = useAppList();
+import bgImg from "@/assets/img/bgImg/bg.jpeg";
 
 // 设置壁纸 start
 let wallpaperList: any = [];
@@ -98,7 +99,7 @@ getDbList();
 
 const setWallpaper = (str: string) => {
   if (str == "0") {
-    backgroundBase64.value = 'url("/src/assets/img/bgImg/bg.jpeg")';
+    backgroundBase64.value = bgImg;
   } else {
     backgroundBase64.value =
       "url(" +
