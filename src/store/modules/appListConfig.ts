@@ -208,7 +208,7 @@ export const list: any = [
     name: "Element Plus",
     componentsName: "smallWeb",
     id: "018",
-    img: "https://element-plus.org/images/element-plus-logo-small.svg",
+    img: "https://files.codelife.cc/website/elementui.svg",
     url: "https://element-plus.gitee.io/zh-CN/",
     layout: "1X1",
     color: "#fff",
