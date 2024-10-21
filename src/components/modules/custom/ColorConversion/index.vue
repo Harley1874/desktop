@@ -1,10 +1,3 @@
-<!-- 
- * @Descripttion: 颜色转换器-StorageConversion
- * @Author: 李峥
- * @Date: 2023-01-04 20:22:00
- * @LastEditors: 李峥
- * @LastEditTime: 2023-01-05 22:47:11
--->
 <template>
   <div class="web_icon storageConversion">
     <div class="box photo" @click="openView">

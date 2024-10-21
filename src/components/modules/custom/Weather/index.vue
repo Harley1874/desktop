@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-16 23:20:10
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 21:11:05
--->
 <template>
   <div class="web_icon weather">
     <template v-if="props.data.layout == '1X1'">

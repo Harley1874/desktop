@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-25 17:59:08
- * @LastEditors: 李峥
- * @LastEditTime: 2023-01-09 21:54:59
--->
-<!--  -->
 <template>
   <div class="reset-box">
     <div class="reset-item">

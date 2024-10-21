@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-02 22:59:43
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 13:17:53
--->
 <script setup lang="ts">
 import TheWelcome from "../components/TheWelcome.vue";
 import { useUserStore } from "@/store/modules/user";

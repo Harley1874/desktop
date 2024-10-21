@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-03 18:59:28
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-03 19:28:14
--->
-<!--  -->
 <template>
   <div class="sidebar">
     <logo bgColor="{'--bg-color': '#304156'}"></logo>

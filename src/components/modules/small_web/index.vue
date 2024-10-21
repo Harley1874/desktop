@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 22:08:10
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 19:21:04
--->
 <template>
   <div class="web_icon" :layout="props.data.layout" @click="openWeb">
     <div class="photo" :style="{ backgroundColor: props.data.color }">

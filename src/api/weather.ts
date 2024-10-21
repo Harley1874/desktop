@@ -1,10 +1,3 @@
-/*
- * @Descripttion:
- * @Author: 李峥
- * @Date: 2022-12-16 22:13:29
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 13:24:34
- */
 import request from "@/utils/request.js";
 const API_KEY = "5ff70bd5ba13e988f01f6dce9e8826f5";
 const HF_KEY = "dbf14f48aa1d4dd98f93a0d22a7b00d7";

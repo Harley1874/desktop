@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 21:45:59
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 18:07:06
--->
-<!--  -->
 <template>
   <div class="module scarch">
     <el-autocomplete
