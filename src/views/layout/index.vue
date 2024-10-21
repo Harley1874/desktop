@@ -85,11 +85,11 @@ import { db } from "@/utils/db.js";
 import { systemConfig } from "@/store/modules/appConfig/index.js";
 const appConfig = systemConfig();
 const pinia = useAppList();
-import bgImg from "@/assets/img/bgImg/bg.jpeg";
-
+// import bgImg from "/bg-img.png";
+const defaultBgImg = 'url("/images/bg-img.png")'
 // 设置壁纸 start
 let wallpaperList: any = [];
-const backgroundBase64 = ref('url("/src/assets/img/bgImg/bg.jpeg")');
+const backgroundBase64 = ref('');
 const getDbList = async () => {
   wallpaperList = await db.myWallpaper.toArray();
   let wallpaperKey = appConfig.systemConfig.wallpaper;
@@ -98,14 +98,15 @@ const getDbList = async () => {
 getDbList();
 
 const setWallpaper = (str: string) => {
+  console.log(`output->str`,str)
   if (str == "0") {
-    backgroundBase64.value = bgImg;
+    backgroundBase64.value = defaultBgImg;
   } else {
     backgroundBase64.value =
       "url(" +
       wallpaperList.find((item: any) => {
         return item.key === str;
-      }).base64;
+      })?.base64;
     +")";
   }
 };
@@ -394,8 +395,9 @@ const clickCustomComponent = (element: any) => {
   width: 100vw;
   height: 100vh;
   background: no-repeat fixed;
-  background-image: url("../../assets/img/bgImg/bg.jpeg");
-  background-size: 100% auto;
+  background-image: url("/images/bg-img.png");
+  background-size: cover;
+  background-position: center;
 }
 .content {
   .modules-block {
