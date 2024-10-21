@@ -391,12 +391,10 @@ const clickCustomComponent = (element: any) => {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .el-overlay-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+:deep(.el-overlay-dialog) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .layout {
   width: 100vw;

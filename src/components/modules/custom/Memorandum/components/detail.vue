@@ -228,10 +228,8 @@ const deleteItem = (item: memorandumList) => {
       .detail-right-content-main {
         height: calc(100% - 40px);
         border-top: 1px solid rgba($color: #000000, $alpha: 0.07);
-        ::v-deep {
-          .el-textarea {
-            height: 100%;
-          }
+        :deep(.el-textarea) {
+          height: 100%;
           .el-textarea__inner {
             background: linear-gradient(
               180deg,

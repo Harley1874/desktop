@@ -79,10 +79,8 @@ const handleSelect = (item: any) => {
   margin-top: 40px;
   text-align: center;
   width: 460px;
-  ::v-deep {
-    .scarch-autocomplete {
-      width: 100%;
-    }
+  :deep(.scarch-autocomplete) {
+    width: 100%;
   }
 }
 </style>

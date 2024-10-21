@@ -67,11 +67,9 @@ $--icon-radius: 10px;
 .dragArea2 {
   display: flex;
   flex-wrap: wrap;
-  ::v-deep {
-    .web_icon.icon-size-1X1 {
-      width: 60px;
-      height: 60px;
-    }
+  :deep(.web_icon.icon-size-1X1){
+    width: 60px;
+    height: 60px;
   }
 }
 </style>

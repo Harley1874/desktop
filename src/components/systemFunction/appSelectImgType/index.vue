@@ -133,12 +133,10 @@ watch(
     }
   }
 }
-::v-deep {
-  .el-image__wrapper {
+:deep(.el-image__wrapper) {
+  border-radius: 10px;
+  .el-image__error {
     border-radius: 10px;
-    .el-image__error {
-      border-radius: 10px;
-    }
   }
 }
 </style>
