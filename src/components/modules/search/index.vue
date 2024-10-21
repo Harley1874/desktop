@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 21:45:59
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-21 18:07:06
--->
-<!--  -->
 <template>
   <div class="module scarch">
     <el-autocomplete
@@ -79,10 +71,8 @@ const handleSelect = (item: any) => {
   margin-top: 40px;
   text-align: center;
   width: 460px;
-  ::v-deep {
-    .scarch-autocomplete {
-      width: 100%;
-    }
+  :deep(.scarch-autocomplete) {
+    width: 100%;
   }
 }
 </style>

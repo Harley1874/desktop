@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 21:24:09
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-14 21:45:32
--->
-<!--  -->
 <template>
   <div class="module timeDate">
     <div class="time">

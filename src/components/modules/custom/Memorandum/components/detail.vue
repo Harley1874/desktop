@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-25 13:53:05
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-25 17:09:59
--->
 <template>
   <div class="detail">
     <div class="detail-left">
@@ -228,10 +221,8 @@ const deleteItem = (item: memorandumList) => {
       .detail-right-content-main {
         height: calc(100% - 40px);
         border-top: 1px solid rgba($color: #000000, $alpha: 0.07);
-        ::v-deep {
-          .el-textarea {
-            height: 100%;
-          }
+        :deep(.el-textarea) {
+          height: 100%;
           .el-textarea__inner {
             background: linear-gradient(
               180deg,

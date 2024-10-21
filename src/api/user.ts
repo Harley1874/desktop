@@ -1,10 +1,3 @@
-/*
- * @Descripttion:
- * @Author: 李峥
- * @Date: 2022-12-03 16:31:40
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-03 21:08:12
- */
 import request from "@/utils/request";
 // 登录方法
 export function login(data: any) {

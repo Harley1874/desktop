@@ -1,10 +1,3 @@
-/*
- * @Descripttion:
- * @Author: 李峥
- * @Date: 2023-01-05 22:05:49
- * @LastEditors: 李峥
- * @LastEditTime: 2023-01-05 22:40:59
- */
 const colorObj = {
   hex: "",
   rgb: "",

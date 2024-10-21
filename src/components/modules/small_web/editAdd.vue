@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-19 20:11:58
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-20 17:19:53
--->
 <template>
   <el-form
     ref="ruleFormRef"

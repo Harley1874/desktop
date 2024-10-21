@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-21 18:47:15
- * @LastEditors: 李峥
- * @LastEditTime: 2023-01-09 21:17:51
--->
 <template>
   <div class="right-drawer" :class="{ show: props.modelValue }">
     <div class="drawer-flex drawer-header">

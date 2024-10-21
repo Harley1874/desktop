@@ -1,10 +1,3 @@
-<!-- 颜色转换器-弹窗详情
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2023-01-04 20:29:37
- * @LastEditors: 李峥
- * @LastEditTime: 2023-01-04 20:29:41
--->
 <template>
   <div class="storageConversion-detail">
     <div class="top">

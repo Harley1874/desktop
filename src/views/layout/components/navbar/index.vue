@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-03 19:30:48
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 13:18:03
--->
 <template>
   <div class="navbar">
     <div class="left">

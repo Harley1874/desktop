@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 20:59:29
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-16 23:04:50
--->
 <script setup lang="ts">
 defineProps<{
   msg: string;

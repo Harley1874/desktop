@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-25 18:53:27
- * @LastEditors: 李峥
- * @LastEditTime: 2023-02-26 20:55:48
--->
 <template>
   <div class="wallpaper-box">
     <ul class="wallpaper-list">

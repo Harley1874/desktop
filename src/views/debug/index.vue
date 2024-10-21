@@ -1,11 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-17 22:29:01
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-17 23:44:39
--->
-<!--  -->
 <template>
   <div class="itxst">
     <div>

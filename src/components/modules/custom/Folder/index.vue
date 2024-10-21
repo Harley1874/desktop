@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-16 23:20:10
- * @LastEditors: 李峥
- * @LastEditTime: 2022-12-18 21:24:25
--->
 <template>
   <div class="web_icon folder">
     <div class="folder-box photo">
@@ -67,11 +60,9 @@ $--icon-radius: 10px;
 .dragArea2 {
   display: flex;
   flex-wrap: wrap;
-  ::v-deep {
-    .web_icon.icon-size-1X1 {
-      width: 60px;
-      height: 60px;
-    }
+  :deep(.web_icon.icon-size-1X1){
+    width: 60px;
+    height: 60px;
   }
 }
 </style>

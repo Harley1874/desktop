@@ -1,10 +1,3 @@
-<!--
- * @Descripttion: 
- * @Author: 李峥
- * @Date: 2022-12-14 21:05:22
- * @LastEditors: 李峥
- * @LastEditTime: 2023-02-26 20:54:55
--->
 <template>
   <div
     class="layout"
@@ -96,7 +89,7 @@ import bgImg from "@/assets/img/bgImg/bg.jpeg";
 
 // 设置壁纸 start
 let wallpaperList: any = [];
-const backgroundBase64 = ref(bgImg);
+const backgroundBase64 = ref('url("/src/assets/img/bgImg/bg.jpeg")');
 const getDbList = async () => {
   wallpaperList = await db.myWallpaper.toArray();
   let wallpaperKey = appConfig.systemConfig.wallpaper;
@@ -392,12 +385,10 @@ const clickCustomComponent = (element: any) => {
 </script>
 
 <style lang="scss" scoped>
-::v-deep {
-  .el-overlay-dialog {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+:deep(.el-overlay-dialog) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .layout {
   width: 100vw;
