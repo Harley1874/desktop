@@ -97,7 +97,7 @@ const dataEncrypt = (data: { account: string; password: string }) => {
   padding-top: 60px;
   .title {
     font-size: 24px;
-    color: $color;
+    color: #1890ff;
     margin-bottom: 40px;
   }
   .submitLogin {
